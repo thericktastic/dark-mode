@@ -2,8 +2,7 @@ import { useState } from "react";
 
 // This code creates the localStorage function and passes it the key and initialValue parameters.
 // While this was built to be used inside our dark mode hook, it can be used anywhere for any kind of localStorage needs I may have in my apps.
-
-export const localStorage = (key, initialValue) => {
+export const useLocalStorage = (key, initialValue) => {
   // Within the function, state is set up as storedValue.
   // This state property takes a function as its initial Value.
   // This is the value function - below the value function is the setter function.
@@ -19,11 +18,11 @@ export const localStorage = (key, initialValue) => {
 
   // This is the setter function
   const setValue = value => {
-    // Save state based on value parameter
+    // Set state based on the parameter
     setStoredValue(value);
 
     // Set value to localStorage using the same key passed into the hook itself.
-    value = window.localStorage.setItem(key, JSON.stringify(value));
+    window.localStorage.setItem(key, JSON.stringify(value));
   };
 
   // Now we return storedValue and setValue from this hook in an array.
